@@ -44,6 +44,7 @@ flatpak install flathub org.gabmus.gfeeds -y
 flatpak install flathub sh.ppy.osu -y
 flatpak install flathub org.telegram.desktop -y
 flatpak install flathub com.stremio.Stremio -y
+flatpak install flathub org.gnome.Solanum -y
 
 # ---------------------------------------------------------------------- #
 
@@ -54,6 +55,8 @@ flatpak update
 
 paru motrix
 paru parsec
+paru steam
+paru discord
 
 ## Installing CHAOTIC AUR ##
 pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
