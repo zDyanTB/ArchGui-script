@@ -61,7 +61,7 @@ fi
 # Installing Feral Gamemode #
 git clone https://github.com/FeralInteractive/gamemode.git
 cd gamemode
-git checkout 1.5.1
+git checkout 1.7 # omit to build the master branch
 ./bootstrap.sh
 
 cd ..
