@@ -16,18 +16,20 @@ sh.ppy.osu
 org.telegram.desktop 
 com.stremio.Stremio 
 com.spotify.Client 
-in.srev.guiscrcpy
-io.github.prateekmedia.appimagepool"
+io.github.prateekmedia.appimagepool
+md.obsidian.Obsidian
+com.ticktick.TickTick"
 
 # --------------------------- Pre-install ----------------------------- #
+sudo rm /var/lib/pacman/db.lck
+
+sudo pacman-key --init
 
 echo '[~] Updating old system'
 yes | sudo pacman -S archlinux-keyring
-yes | sudo pacman -S flatpak
+sudo pacman -S flatpak # Unable to set yes as default, it request a choice, default=1 #
 yes | sudo pacman -Syyuu
 # ----------------------------- Hands on ----------------------------- #
-
-yes | sudo pacman -Syu
 
 # Gaming essential lib #
 yes | sudo pacman -S $essential
@@ -50,13 +52,17 @@ if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
     # Gnome flatpak applications #
     gnome_flatpak="
     org.gnome.Boxes
-    org.gnome.Solanum
+    org.gnome.Platform/x86_64/42
     "
+    
     yes | flatpak install flathub $gnome_flatpak
     
 elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
     echo Using KDE
 fi
+
+# Snapd apps # 
+snap install scrcpy
 
 # Installing Feral Gamemode #
 git clone https://github.com/FeralInteractive/gamemode.git
@@ -69,8 +75,6 @@ cd ..
 # Installing ZAP AppImage Package manager #
 curl -fsSL curl https://raw.githubusercontent.com/srevinsaju/zap/main/install.sh | sh
 # ----------------------------- Pos-install ----------------------------- #
-
-sudo pacman-key --init
 
 # Enable write permission to /etc/pacman.conf #
 sudo chmod a+w /etc/pacman.conf
@@ -91,13 +95,14 @@ yes | sudo pacman -Syu
 flatpak update
 
 echo '[~] Apps to be installed by paru'
-paru parsec
-paru steam
-paru motrix
-paru discord
-paru qbittorrent
-paru visual-studio-code
-paru brave
+echo '
+parsec
+steam
+motrix
+discord
+qbittorrent
+visual-studio-code
+brave'
 
 echo '[~] Script finished'
 # ---------------------------------------------------------------------- #
